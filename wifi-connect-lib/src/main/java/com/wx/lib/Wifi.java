@@ -148,7 +148,7 @@ public class Wifi {
 			return false;
 		}
 		
-		ReenableAllApsWhenNetworkStateChanged.schedule(ctx);
+//		ReenableAllApsWhenNetworkStateChanged.schedule(ctx);
 		
 		// Disable others, but do not save.
 		// Just to force the WifiManager to connect to it.
