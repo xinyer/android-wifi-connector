@@ -1,1 +1,1 @@
-include ':app', ':wifi-connect-lib'
+include ':wifi-connect-lib'
