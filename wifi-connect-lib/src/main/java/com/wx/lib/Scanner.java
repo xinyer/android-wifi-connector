@@ -21,9 +21,12 @@ public class Scanner {
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
-            if (action.equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)) {
+            if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equals(action)) {
                 List<ScanResult> scanResults = mWifiManager.getScanResults();
                 mListener.scanFinish(scanResults);
+                for (ScanResult result : scanResults) {
+                    System.out.println("scan result:" + result.toString());
+                }
                 mWifiManager.startScan();
             }
         }

@@ -33,12 +33,16 @@ public class Connector {
         this.mScanner.scan(new Scanner.Listener() {
             @Override
             public void scanFinish(List<ScanResult> results) {
-                handleScanResult(results);
+                try {
+                    handleScanResult(results);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
-    private void handleScanResult(List<ScanResult> results) {
+    private synchronized void handleScanResult(List<ScanResult> results) {
         if (results != null && !results.isEmpty()) {
             for (ScanResult result : results) {
                 if (find(result)) {
@@ -46,6 +50,7 @@ public class Connector {
                         mListener.onFoundAdHoc(result);
                     } else {
                         mListener.onFoundHotspot(result);
+                        mScanner.stop();
                         connect(result);
                     }
                     break;
