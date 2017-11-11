@@ -24,7 +24,7 @@ public class Scanner {
             if (action.equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)) {
                 List<ScanResult> scanResults = mWifiManager.getScanResults();
                 mListener.scanFinish(scanResults);
-                stop();
+                mWifiManager.startScan();
             }
         }
     };
@@ -41,7 +41,7 @@ public class Scanner {
         mWifiManager.startScan();
     }
 
-    private void stop() {
+    public void stop() {
         mContext.unregisterReceiver(mScanReceiver);
     }
 

@@ -97,6 +97,10 @@ public class Connector {
         }
     }
 
+    public void stop() {
+        mScanner.stop();
+    }
+
     public interface Listener {
         void onNotFountHotspot();
         void onFoundHotspot(ScanResult result);
